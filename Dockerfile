@@ -19,3 +19,8 @@ RUN mkdir -p /chome
 RUN useradd -u 2000 -M -d /chome/cluser cluser
 RUN echo "cluser:cluser"|chpasswd
 RUN yum install -y vim gnuplot
+RUN yum install -y openssh-server xauth
+RUN ssh-keygen  -q -t rsa -f /etc/ssh/ssh_host_rsa_key -N "" -C "" < /dev/null > /dev/null 2> /dev/null
+RUN ssh-keygen  -q -t dsa -f /etc/ssh/ssh_host_dsa_key -N "" -C "" < /dev/null > /dev/null 2> /dev/null
+RUN sed -i -e 's/#X11UseLocalhost.*/X11UseLocalhost no/' /etc/ssh/sshd_config
+
