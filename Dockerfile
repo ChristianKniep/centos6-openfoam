@@ -24,3 +24,5 @@ RUN ssh-keygen  -q -t rsa -f /etc/ssh/ssh_host_rsa_key -N "" -C "" < /dev/null >
 RUN ssh-keygen  -q -t dsa -f /etc/ssh/ssh_host_dsa_key -N "" -C "" < /dev/null > /dev/null 2> /dev/null
 RUN sed -i -e 's/#X11UseLocalhost.*/X11UseLocalhost no/' /etc/ssh/sshd_config
 
+EXPOSE 22
+CMD /usr/sbin/sshd -D
